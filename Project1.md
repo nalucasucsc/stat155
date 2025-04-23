@@ -1,6 +1,3 @@
-# test
-
-
 ## Project 1 
 
 ## Introduction to the subject matter you are investigating: 
