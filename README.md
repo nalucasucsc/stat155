@@ -11,7 +11,7 @@ The final product will include reproducible data analysis, and a written summary
 
 # Contents:
 ---
-* Project 1 will have an explanation of the sources of data, data dictionary and an explanation of how we preprocessed and cleaned the data
+* [Project 1](https://github.com/nalucasucsc/stat155/tree/main/Project%201) will have an explanation of the sources of data, data dictionary and an explanation of how we preprocessed and cleaned the data
 * Project 2 is an Exploratory data analysis of the data
 * Project 3 is the actual linear regression analysis, using one linear regression technique
 * Project 4 is a simulation study to compare 2 or more linear regression techniques
