@@ -4,6 +4,11 @@
 ---
 # Description: 
 This project investigates how wage gaps between union and nonunion workers influence compensation strategies in Human Resources. Using longitudinal data from 1973–2024, the analysis explores differences across education levels, industries, gender, and employment sectors.
+
+This study analyzes datasets from the U.S. Census Bureau and Bureau of Labor Statistics, published on UnionStats.com. I will explore demographics such as: education level, gender, industry type, and public vs. private sector employment, and how these influence the union–nonunion wage divide. I will examine of how these wage patterns influence compensation strategies in human resources management.
+
+The final product will include reproducible data analysis, and a written summary of insights that can guide more equitable and evidence-based compensation policies in today’s labor landscape.
+
 # Contents:
 ---
 * Project 1 will have an explanation of the sources of data, data dictionary and an explanation of how we preprocessed and cleaned the data
