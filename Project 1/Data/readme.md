@@ -8,4 +8,4 @@ Extracted from: [https://www.unionstats.com](https://www.unionstats.com)
 
 # Data Dictionary
 ---
-See [https://github.com/rfordatascience/tidytuesday/blob/main/data/2023/2023-09-05/readme.md] (https://github.com/rfordatascience/tidytuesday/blob/main/data/2023/2023-09-05/readme.md) and [https://www.unionstats.com](https://www.unionstats.com) for details.
+See [https://github.com/rfordatascience/tidytuesday/blob/main/data/2023/2023-09-05/readme.md](https://github.com/rfordatascience/tidytuesday/blob/main/data/2023/2023-09-05/readme.md) and [https://www.unionstats.com](https://www.unionstats.com) for details.
