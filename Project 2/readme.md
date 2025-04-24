@@ -12,8 +12,8 @@ I will be quantifying the relationship between wage gap and demographics (indust
 # Prediction:
 I will be using lasso regression to predict wage gaps between union-nonunion workers in specified demographics and sector-industry combinations, while also identifying the most important variables that will predict union-nonunion wage differences.
 # Main variables of interest: 
-wage_gap (dependent variable)
-year, industry, sector, gender, highest education (independent variables)
+* wage_gap (dependent variable)
+* year, industry, sector, gender, highest education (independent variables)
 
 ---
 # Data Description:
