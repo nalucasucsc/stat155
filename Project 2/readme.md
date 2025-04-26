@@ -13,7 +13,7 @@ I will be quantifying the relationship between union membership and demographics
 I will be using logistic regression to find how industry, gender, sector, and highest education effect total employment, and total members. 
 # Main variables of interest:
 * year: year of observation 
-* industry, sector, gender, highest education: main categories for union presence indicators and total employement (in 1,000's)
+* industry, sector, gender, highest education: main categories for union presence indicators, total employement and total members(in 1,000's)
 
 ---
 # Data Description:
