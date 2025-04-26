@@ -1,5 +1,5 @@
 ## Project 1 
-
+---
 ## Introduction to the subject matter you are investigating: 
 I am investigating how union membership differs bewteen gender, sector, industry, and education from 1977 to 2024.
 
