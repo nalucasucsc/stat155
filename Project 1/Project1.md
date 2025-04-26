@@ -25,6 +25,24 @@ year, union membership, gender, highest education, private, public sector, and i
 
 Hirsch, Barry T., David A. Macpherson, and William E. Even (2025).  Union Membership, Coverage, and Earnings from the CPS. https://unionstats.com
 
+Hirsch, B. T., Macpherson, D. A., & Even, W. E. (2025). [Union Membership, Coverage, Density, and Employment: Manufacturing Workers] [Data set]. Copyright by Barry T. Hirsch, David A. Macpherson, and William E. Even
+
+Hirsch, B. T., Macpherson, D. A., & Even, W. E. (2025). [Union Membership, Coverage, Density, and Employment: Wholesale and Retail Trade Workers] [Data set]. Copyright by Barry T. Hirsch, David A. Macpherson, and William E. Even
+
+Hirsch, B. T., Macpherson, D. A., & Even, W. E. (2025). [Union Membership, Coverage, Density, and Employment:	Public Administration] [Data set]. Copyright by Barry T. Hirsch, David A. Macpherson, and William E. Even
+
+Hirsch, B. T., Macpherson, D. A., & Even, W. E. (2025). [Union Membership, Coverage, Density, and Employment:	Private Sector Workers] [Data set]. Copyright by Barry T. Hirsch, David A. Macpherson, and William E. Even
+
+Hirsch, B. T., Macpherson, D. A., & Even, W. E. (2025). [Union Membership, Coverage, Density, and Employment:	Public Sector Workers] [Data set]. Copyright by Barry T. Hirsch, David A. Macpherson, and William E. Even
+
+Hirsch, B. T., Macpherson, D. A., & Even, W. E. (2025). [Union Membership, Coverage, Density, and Employment:	Workers with less than Bachelor's Degree] [Data set]. Copyright by Barry T. Hirsch, David A. Macpherson, and William E. Even
+
+Hirsch, B. T., Macpherson, D. A., & Even, W. E. (2025). [Union Membership, Coverage, Density, and Employment:	Workers with Bachelor's Degree or More	] [Data set]. Copyright by Barry T. Hirsch, David A. Macpherson, and William E. Even
+
+Hirsch, B. T., Macpherson, D. A., & Even, W. E. (2025). [Union Membership, Coverage, Density, and Employment:	Male Workers] [Data set]. Copyright by Barry T. Hirsch, David A. Macpherson, and William E. Even
+
+Hirsch, B. T., Macpherson, D. A., & Even, W. E. (2025). [Union Membership, Coverage, Density, and Employment:	Female Workers] [Data set]. Copyright by Barry T. Hirsch, David A. Macpherson, and William E. Even
+
 Macpherson, D. A., & Hirsch, B. T. (2023). Five decades of CPS wages, methods, and union‐nonunion wage gaps at unionstats.com. Industrial Relations: A Journal of Economy and Society, 62(4), 439–452. https://doi.org/10.1111/irel.12330 
 
 Summers, L. (2025, April 8). Larry Summers warns of economic carnage, millions of lost jobs as a result of Trump's tariffs. New York Post. https://nypost.com/2025/04/08/business/larry-summers-predicts-recession-2m-unemployed-due-to-tariffs/​
