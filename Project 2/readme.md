@@ -1,7 +1,7 @@
 # Project 2
 ---
 # Research Question:
-How has union membership changed across different industries and demographics from 1977 to 2024?
+How has union membership differs bewteen gender, sector, industry, and education from 1977 to 2024?
 
 ---
 # Analysis Objective
