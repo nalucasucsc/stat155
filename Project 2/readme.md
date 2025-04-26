@@ -10,10 +10,10 @@ The objective of this analysis is to summarize and vizualize union membership tr
 # Analysis:
 I will be quantifying the relationship between union membership and demographics (industry, sector, gender, education, year) using linear regression. 
 # Prediction:
-I will be using lasso regression to predict union workers in specified demographics and sector-industry combinations, while also identifying the most important variables that will predict union-nonunion wage differences.
-# Main variables of interest: 
-* wage_gap (dependent variable)
-* year, industry, sector, gender, highest education (independent variables)
+I will be using logistic regression to find how industry, gender, sector, and highest education effect total employment, and total members. 
+# Main variables of interest:
+* year: year of observation 
+* industry, sector, gender, highest education: main categories for union presence indicators and total employement (in 1,000's)
 
 ---
 # Data Description:
@@ -21,6 +21,21 @@ The data was originally collected by the U.S. Census Bureau and Bureau of Labor 
 
 # Variable Breakdown:
 * year: year of observation
-* union_membership, coverage: union presence indicators
-* employment: workforce size
-* industry, sector, gender, highest education: demographic and categorical variables
+* perc_mem_college: percent union membership among college graduates
+* perc_mem_less_college: percent union membership among individuals with less than a college degree
+* perc_mem_female: percent union membership among females
+* perc_mem_male: percent union membership among males
+* perc_mem_public: percent union membership in the public sector
+* perc_mem_private: percent union membership in the private sector
+* perc_mem_manu: percent union membership in the manufacturing industry
+* perc_mem_whole: percent union membership in the wholesale/retail industry
+* perc_mem_public_admin: percent union membership in public administration industry
+* total_employ_college: total employment of college graduates (in 1,000s)
+* total_employ_less_college: total employment of individuals with less than a college degree (in 1,000s)
+* total_employ_female: total employment of females (in 1,000s)
+* total_employ_male: total employment of males (in 1,000s)
+* total_employ_public: total employment in the public sector (in 1,000s)
+* total_employ_private: total employment in the private sector (in 1,000s)
+* total_employ_manu: total employment in the manufacturing industry (in 1,000s)
+* total_employ_whole: total employment in the wholesale/retail industry (in 1,000s)
+* total_employ_public_admin: total employment in the public administration industry (in 1,000s)
