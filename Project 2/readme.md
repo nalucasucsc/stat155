@@ -21,6 +21,8 @@ The data was originally collected by the U.S. Census Bureau and Bureau of Labor 
 
 # Variable Breakdown:
 * year: year of observation
+
+# Union presence indicators (percentages):
 * perc_mem_college: percent union membership among college graduates
 * perc_mem_less_college: percent union membership among individuals with less than a college degree
 * perc_mem_female: percent union membership among females
@@ -29,7 +31,9 @@ The data was originally collected by the U.S. Census Bureau and Bureau of Labor 
 * perc_mem_private: percent union membership in the private sector
 * perc_mem_manu: percent union membership in the manufacturing industry
 * perc_mem_whole: percent union membership in the wholesale/retail industry
-* perc_mem_public_admin: percent union membership in public administration industry
+* perc_mem_public_admin: percent union membership in the public administration industry
+
+# Total employment (in 1,000s):
 * total_employ_college: total employment of college graduates (in 1,000s)
 * total_employ_less_college: total employment of individuals with less than a college degree (in 1,000s)
 * total_employ_female: total employment of females (in 1,000s)
@@ -39,3 +43,14 @@ The data was originally collected by the U.S. Census Bureau and Bureau of Labor 
 * total_employ_manu: total employment in the manufacturing industry (in 1,000s)
 * total_employ_whole: total employment in the wholesale/retail industry (in 1,000s)
 * total_employ_public_admin: total employment in the public administration industry (in 1,000s)
+
+# Total union membership (in 1,000s):
+* total_mem_college: total union membership among college graduates (in 1,000s)
+* total_mem_less_college: total union membership among individuals with less than a college degree (in 1,000s)
+* total_mem_female: total union membership among females (in 1,000s)
+* total_mem_male: total union membership among males (in 1,000s)
+* total_mem_public: total union membership in the public sector (in 1,000s)
+* total_mem_private: total union membership in the private sector (in 1,000s)
+* total_mem_manu: total union membership in the manufacturing industry (in 1,000s)
+* total_mem_whole: total union membership in the wholesale/retail industry (in 1,000s)
+* total_mem_public_admin: total union membership in the public administration industry (in 1,000s)
