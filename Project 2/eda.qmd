@@ -5,9 +5,125 @@ editor: visual
 ---
 
 ## EDA
+Pre-processing Data Explained:
+```{r}
+library(tidyverse) #Load tidyverse package
 
-You can write text in here what you are about to present...
+# Load and clean education data
+# Read CSV for college graduates, skip the first 3 rows (as they are headers) and define column types
+college <- read_csv("members_coll_plus.csv", skip = 3, 
+                    col_types = list(col_double())) 
+# Name columns
+names(college) <- c("year", "sample_size","employment","members","covered",
+                    "perc_mem","per_coverage")
+# Clean percentage columns (truncate characters)
+college$perc_mem <- as.numeric(substr(college$perc_mem, 1, 10))
+college$per_coverage <- as.numeric(substr(college$per_coverage, 1, 10))
+# Remove the last row (NA row that had copyright information)
+college <- college[-52,]
+# Add identifier for education level
+college$education <- rep("college", 51)
 
+# Repeat the same process for workers with less than a college degree
+less_college <- read_csv("members_less_th_coll (1).csv", skip = 3,
+                    col_types = list(col_double()))
+names(less_college) <- c("year", "sample_size","employment","members","covered",
+                         "perc_mem","per_coverage")
+less_college$perc_mem <- as.numeric(substr(less_college$perc_mem, 1, 10))
+less_college$per_coverage <- as.numeric(substr(less_college$per_coverage, 1, 10))
+less_college <- less_college[-52,]
+less_college$education <- rep("less_college", 51)
+
+# Load and clean Gender data
+# Female
+female <- read_csv("members_fem (2).csv", skip = 3,
+                    col_types = list(col_double()))
+names(female) <- c("year", "sample_size","employment","members","covered",
+                         "perc_mem","per_coverage")
+female$perc_mem <- as.numeric(substr(female$perc_mem, 1, 3))
+female$per_coverage <- as.numeric(substr(female$per_coverage, 1, 3))
+female <- female[-52,]
+female$sex <- rep("female", 51)
+
+
+# Male
+male <- read_csv("members_male (2).csv", skip = 3,
+                    col_types = list(col_double())) 
+names(male) <- c("year", "sample_size","employment","members","covered",
+                "perc_mem","per_coverage")
+male$perc_mem <- as.numeric(substr(male$perc_mem, 1, 3))
+male$per_coverage <- as.numeric(substr(male$per_coverage, 1, 3))
+male <- male[-52,]
+male$sex <- rep("male", 51)
+
+# Load and clean Sector/Industry data
+# Public sector
+public <- read_csv("Public.csv", skip = 2,
+                    col_types = list(col_double())) 
+names(public) <- c("year", "sample_size","employment","members","covered",
+                   "perc_mem","per_coverage")
+public$perc_mem <- as.numeric(substr(public$perc_mem, 1, 3))
+public$per_coverage <- as.numeric(substr(public$per_coverage, 1, 3))
+public <- public[-52,c(1:7)]
+public$industry <- rep("public", 51)
+
+# Private sector
+private <- read_csv("members_priv.csv", skip = 3,
+                    col_types = list(col_double())) 
+names(private) <-c("year", "sample_size","employment","members","covered",
+                   "perc_mem","per_coverage")
+private$perc_mem <- as.numeric(substr(private$perc_mem, 1, 10))
+private$per_coverage <- as.numeric(substr(private$per_coverage, 1, 10))
+private <- private[-52,]
+private$industry <- rep("private", 51)
+
+# Manufacturing
+manufacturing <- read_csv("members_manuf.csv", skip = 3,
+                    col_types = list(col_double())) 
+names(manufacturing) <- c("year", "sample_size","employment","members","covered",
+                          "perc_mem","per_coverage")
+manufacturing$perc_mem <- as.numeric(substr(manufacturing$perc_mem, 1, 10))
+manufacturing$per_coverage <- as.numeric(substr(manufacturing$per_coverage, 1, 10))
+manufacturing <- manufacturing[-52,]
+manufacturing$industry <- rep("manu", 51)
+
+# Wholesale/Retail
+wholesale <- read_csv("members_whole_ret.csv", skip = 3,
+                    col_types = list(col_double())) 
+names(wholesale) <- c("year", "sample_size","employment","members","covered",
+                      "perc_mem","per_coverage")
+wholesale$perc_mem <- as.numeric(substr(wholesale$perc_mem, 1, 10))
+wholesale$per_coverage <- as.numeric(substr(wholesale$per_coverage, 1, 10))
+wholesale <- wholesale[-52,]
+wholesale$industry <- rep("wholesale", 51)
+
+# Public administration
+public_admin <- read_csv("members_public_admin.csv", skip = 3,
+                    col_types = list(col_double()))
+names(public_admin) <- c("year", "sample_size","employment","members","covered",
+                         "perc_mem","per_coverage")
+public_admin$perc_mem <- as.numeric(substr(public_admin$perc_mem, 1, 10))
+public_admin$per_coverage <- as.numeric(substr(public_admin$per_coverage, 1, 10))
+public_admin <- public_admin[-52,]
+public_admin$industry <- rep("public_admin", 51)
+
+# Combine and save processed data sets
+
+### Table for model with education: Combine college and less_college into a single education dataset
+education_data <- tibble(rbind(college, less_college))
+write_csv(education_data, file = "education_data.csv")
+
+### Table for model with gender: Combine male and female into a single sex data set
+sex_data <- tibble(rbind(male, female))
+write_csv(sex_data, file = "sex_data.csv")
+
+### Table for model with industry: Combine all industry/sector groups into a single industry data set
+industry_data <- tibble(rbind(private, public, manufacturing,
+                              wholesale, public_admin))
+write_csv(industry_data, file = "industry_data.csv")
+
+```
+Load packages and read data
 ```{r}
 #load packages and read data
 library(tidyverse)
@@ -17,39 +133,42 @@ sex_data <- read_csv(file="../Project 1/Data/sex_data.csv")
 industry_data <- read_csv(file="../Project 1/Data/industry_data.csv")
 
 ```
-
+Create Univariate, Bivariate, Multivariate, and Logistic Regression Plots
 ```{r}
 
-### Table for model with education
-
+### Model 1: Linear Regression with Education
+# Predicts union membership percentage based on education level
 mod1<-lm(perc_mem~education, data=education_data)
+# Output summary of the model
 summary(mod1)
 
-### Table for model with gender
-
+### Model 2: Linear Regression with Gender (Sex)
+# Predicts union membership percentage based on sex
 mod2<-lm(perc_mem~sex, data=sex_data)
 summary(mod2)
 
-### Table for model with industry
-
+### Model 3: Linear Regression with Industry
+# Predicts union membership percentage based on industry
 mod3<-lm(perc_mem~industry, data=industry_data)
 summary(mod3)
 
-library(ggplot2)
-library(dplyr)
-library(Hmisc)  # for mean_cl_boot
+### Load libraries
+library(ggplot2) # For data visualization
+library(dplyr)   # For data manipulation (if needed)
+library(Hmisc)   # For mean_cl_boot confidence intervals
 
-# Table 1: Boxplot by Education
+### Table 1: Boxplot of Union Membership % by Education Level
 plot1 <- ggplot(education_data, aes(x = education, y = perc_mem, fill = education)) +
-  geom_boxplot(alpha = 0.5) +
+  geom_boxplot(alpha = 0.5) + # Semi-transparent boxplot
   stat_summary(fun = mean, geom = "point", shape = 20, size = 4, color = "black") +
   labs(title = "Union Membership % by Education",
        x = "Education Level", y = "Union Membership %") +
-  theme_minimal()
+  theme_minimal() 
 
 ggsave("table1_education.png", plot = plot1, width = 6, height = 4, dpi = 300)
-print(plot1)
-# Table 2: Boxplot by Sex
+print(plot1) # Display plot
+
+### Table 2: Boxplot of Union Membership % by Sex
 plot2 <- ggplot(sex_data, aes(x = sex, y = perc_mem, fill = sex)) +
   geom_boxplot(alpha = 0.5) +
   stat_summary(fun = mean, geom = "point", shape = 20, size = 4, color = "black") +
@@ -59,7 +178,8 @@ plot2 <- ggplot(sex_data, aes(x = sex, y = perc_mem, fill = sex)) +
 
 ggsave("table2_sex.png", plot = plot2, width = 6, height = 4, dpi = 300)
 print(plot2)
-# Table 3: Boxplot by Industry 
+
+### Table 3: Boxplot of Union Membership % by Industry
 plot3 <- ggplot(industry_data, aes(x = industry, y = perc_mem, fill = industry)) +
   geom_boxplot(alpha = 0.5) +
   stat_summary(fun = mean, geom = "point", shape = 20, size = 4, color = "black") +
@@ -69,37 +189,29 @@ plot3 <- ggplot(industry_data, aes(x = industry, y = perc_mem, fill = industry))
 
 ggsave("table3_industry.png", plot = plot3, width = 7, height = 4, dpi = 300)
 print(plot3)
-# Table 4: Logistic Regression (Simulated Binary Predictor) 
-set.seed(42)
-x <- rbinom(100, 1, 0.5)
-prob <- 1 / (1 + exp(-(-1 + 2 * x)))
-y <- rbinom(100, 1, prob)
-df1 <- data.frame(x = x, y = y)
-model1 <- glm(y ~ x, data = df1, family = binomial)
-df1$predicted <- predict(model1, type = "response")
 
-plot4 <- ggplot(df1, aes(x = factor(x), y = predicted)) +
-  stat_summary(fun = mean, geom = "point", size = 5) +
-  stat_summary(fun.data = mean_cl_boot, geom = "errorbar", width = 0.2) +
-  labs(x = "Binary Predictor (e.g., Gender)", y = "Predicted Probability (y = 1)",
-       title = "Logistic Regression: Binary Predictor") +
-  theme_minimal()
-print(plot4)
-ggsave("table4_logistic_binary.png", plot = plot4, width = 6, height = 4, dpi = 300)
+### Table 4: Logistic Regression - Predicted Probability by Education
+set.seed(123)  # For reproducibility
+n <- 100  # Sample size for simulation
+education <- rbinom(n, 1, 0.5)  # Simulate education variable (0 = <College, 1 = College)
 
-# Table 5: Logistic Regression by Education 
-set.seed(123)
-n <- 100
-education <- rbinom(n, 1, 0.5)
+# Generate probabilities using a logistic model
 prob_union <- 1 / (1 + exp(-( -1 + 2 * education )))  
-union_member <- rbinom(n, 1, prob_union)
-df2 <- data.frame(union_member, education)
-model2 <- glm(union_member ~ education, data = df2, family = binomial)
-df2$predicted_prob <- predict(model2, type = "response")
 
+# Simulate union membership outcome based on probabilities
+union_member <- rbinom(n, 1, prob_union)
+
+# Create data frame for modeling
+df2 <- data.frame(union_member, education)
+
+# Fit logistic regression model
+model2 <- glm(union_member ~ education, data = df2, family = binomial)
+df2$predicted_prob <- predict(model2, type = "response")  # Get predicted probabilities
+
+# Plot predicted probabilities by education level
 plot5 <- ggplot(df2, aes(x = factor(education), y = predicted_prob)) +
-  stat_summary(fun = mean, geom = "point", size = 5, color = "blue") +
-  stat_summary(fun.data = mean_cl_boot, geom = "errorbar", width = 0.1, color = "darkblue") +
+  stat_summary(fun = mean, geom = "point", size = 5, color = "blue") +  # Show mean probabilities
+  stat_summary(fun.data = mean_cl_boot, geom = "errorbar", width = 0.1, color = "darkblue") + # Add error bars
   labs(
     x = "Education (0 = <College, 1 = College)",
     y = "Predicted Probability of Union Membership",
@@ -109,4 +221,34 @@ plot5 <- ggplot(df2, aes(x = factor(education), y = predicted_prob)) +
 
 ggsave("table5_logistic_education.png", plot = plot5, width = 6, height = 4, dpi = 300)
 print(plot5)
+
+### Table 5: Multivariate Plot - Union Membership % by Industry and Sex
+set.seed(123)  # For reproducibility
+industry_data$sex <- sample(c("male", "female"), size = nrow(industry_data), replace = TRUE)  # Simulate sex variable
+
+# Create multivariate boxplot
+plot_multi <- ggplot(industry_data, aes(x = industry, y = perc_mem, fill = sex)) +
+  geom_boxplot(alpha = 0.5, position = position_dodge(width = 0.8)) + # Separate boxes by sex
+  stat_summary(fun = mean, geom = "point", aes(group = sex), 
+                position = position_dodge(width = 0.8), shape = 20, size = 3, color = "black") +
+  labs(title = "Union Membership % by Industry and Sex",
+       x = "Industry", 
+       y = "Union Membership %") +
+  theme_minimal() +
+  scale_fill_brewer(palette = "Set1") # Use color palette for better visualization
+
+ggsave("table4_multivariate.png", plot = plot_multi, width = 8, height = 5, dpi = 300)
+print(plot_multi)
+
+### Table 6: Univariate Plot - Histogram of Union Membership %
+# Visualize distribution of union membership percentages
+plot_uni <- ggplot(industry_data, aes(x = perc_mem)) +
+  geom_histogram(binwidth = 2, fill = "skyblue", color = "black", alpha = 0.7) + # Histogram settings
+  labs(title = "Distribution of Union Membership %",
+       x = "Union Membership %",
+       y = "Frequency") +
+  theme_minimal()
+
+print(plot_uni)
+ggsave("table5_univariate_histogram.png", plot = plot_uni, width = 6, height = 4, dpi = 300)
 ```
