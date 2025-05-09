@@ -1,8 +1,8 @@
 # Project 2
+Here contains reproducible Quarto report (eda.qmd), cleaned datasets for education, gender, and industry analyses, R scripts for data cleaning and modeling, and saved visualization outputs used in the exploratory data analysis.
 ---
 # Research Question:
 How has union membership differs bewteen gender, sector, industry, and education from 1973 to 2024?
-
 ---
 # Analysis Objective
 # Description: 
