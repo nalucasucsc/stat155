@@ -1,64 +1,111 @@
 ---
-title: "EDA"
-format: md
+title: "project3_draft.qmd"
+format: html
 editor: visual
 ---
-Project 2
-Research Question:
-How has union membership differs between gender, sector, industry, and education from 1973 to 2024?
 
-Analysis Objective
-Description:
-The objective of this analysis is to summarize and visualize union membership trends over time, across sectors (private vs. public), industries (manufacturing, wholesale and trade retail, public administration), gender (female vs. male), and education (more than college vs. less than college). Time-series plots and group-wise averages will be analyzed to reveal any trends and disparities.
+# Project 3 Draft
 
-Analysis:
-I will be quantifying the relationship between union membership and demographics (industry, sector, gender, education, year) using logistic regression.
+## Introduction and Data
 
-Prediction:
-Logistic regression is used to predict the probability of union membership based on education. I plan on extending the model to include gender, industry, and sector. This informs our understanding of which groups are more or less likely to be union members.
+**Research Question:** How does union membership differ by gender, sector, industry, and education level from 1973 to 2024?
 
-Main variables of interest:
+**Project Motivation**: This project investigates union membership patterns to better understand how social and economic factors like education, gender, and industry influence union participation. Analyzing these patterns can inform discussions on labor rights, wage equity, and workforce representation.
+
+**Analysis Objective Description:** The objective of this analysis is to summarize and visualize union membership trends over time across sectors (private vs. public), industries (manufacturing, wholesale and retail trade, public administration), gender (female vs. male), and education levels (college degree vs. less than college degree). Time series plots and group-wise averages will be used to explore trends and disparities in union membership.
+
+**Analysis:** I will quantify the relationship between union membership and demographic factors (industry, sector, gender, education, and year) using logistic regression. This will help assess how these variables influence union participation.
+
+**Prediction:** Logistic regression is used to predict the probability of union membership based on education. I plan to extend the model to include gender, industry, and sector to better understand which groups are more or less likely to be union members.
+
+**Main Variables of Interest:**
+
 year: Year of observation
+
 industry: Industry category (manufacturing, wholesale/retail, public administration)
+
 sector: Sector category (public or private)
+
 gender: Gender of workers (male or female)
+
 education: Highest education level (college degree or less than college degree)
+
 perc_mem: Percentage of workers who are union members
+
 total_mem: Total number of union members (in thousands)
+
 total_employ: Total number of employed individuals (in thousands)
 
-Data Description:
-The data was originally collected by the U.S. Census Bureau and Bureau of Labor Statistics (BLS) through the Current Population Survey (CPS). For high earning individuals, researchers used Pareto distribution estimates. Annually on Unionstats.com, linear regression models are used to demonstrate the wage gaps between union and nonunion workers. You can find the data at https://www.unionstats.com/ under "By Sector and Demographic Group: 1973-2024". The dataset spans from 1973 to 2024.
+**Data Description:** The data was originally collected by the U.S. Census Bureau and the Bureau of Labor Statistics (BLS) through the Current Population Survey (CPS). The primary data source is UnionStats.com under the section "By Sector and Demographic Group: 1973–2024". The dataset spans from 1973 to 2024 and provides annual observations on union membership rates across key demographic and labor market categories.
 
-Variable Breakdown:
-year: year of observation
-industry, sector, gender, highest education: key categories to explain union presence
-total_employ, total_mem: total employed and union members (in thousands)
-perc_mem: percentage of workers who are union members
-Union presence indicators (percentages):
-year: year of observation
-perc_mem: percentage of workers who are union members
-total_mem: total number of union members (in thousands)
-total_employ: total number of employed individuals (in thousands)
-college: indicator for college-educated individuals
-less_college: indicator for individuals with less than a college degree
-female, male: gender groups
-public, private: sector categories
-manu, wholesale, public_admin: industry categories
+**Variable Breakdown:**
 
-Indicator Variables (Created During Data Cleaning):
-college: 1 if college-educated, 0 otherwise
-less_college: 1 if less than college education, 0 otherwise
-female: 1 if female, 0 otherwise
-male: 1 if male, 0 otherwise
-public: 1 if public sector, 0 otherwise
-private: 1 if private sector, 0 otherwise
-manu: 1 if manufacturing industry, 0 otherwise
-wholesale: 1 if wholesale/retail industry, 0 otherwise
-public_admin: 1 if public administration industry, 0 otherwise
+Categorical Variables:
+
+-   industry, sector, gender, education: Key categories used to explain union presence.
+
+Continuous Variables:
+
+-   total_employ, total_mem: Total number of employed individuals and union members (in thousands).
+
+-   perc_mem: Percentage of workers who are union members.
+
+Indicator Variables:
+
+-   college: 1 if college-educated, 0 otherwise
+
+-   less_college: 1 if less than college education, 0 otherwise
+
+-   female: 1 if female, 0 otherwise
+
+-   male: 1 if male, 0 otherwise
+
+-   public: 1 if public sector, 0 otherwise
+
+-   private: 1 if private sector, 0 otherwise
+
+-   manu: 1 if manufacturing industry, 0 otherwise
+
+-   wholesale: 1 if wholesale/retail industry, 0 otherwise
+
+-   public_admin: 1 if public administration industry, 0 otherwise
+
+## Methodology
+
+To explore the relationship between union membership and demographics, I used linear regression and logistic regression models.
+
+**Linear Regression Models** were used to analyze how union membership percentages vary by education, gender, and industry. The specific plots I used were box plots and histograms.
+
+**Logistic Regression** was used to predict the probability of union membership based on education level, with plans to extend the model to include gender, industry, and sector. I used a simulated data set to demonstrate how education level affects the likelihood of union membership. In the future, I will include more demographics to improve the analysis and overall accuracy and not use simulated data.
+
+**Dependent Variable**: perc_mem (percentage of union membership).
+
+**Independent Variables**: education, sex, industry, and sector.
+
+## Results
+
+The exploratory data analysis reveals differences in union membership patterns across demographic groups.
+
+-   **Education**: The logistic regression model indicates that individuals with a college degree have a significantly higher probability of union membership (\~75%) compared to those without a college degree (\~27%). (It is important to note that this model was based on simulated data and does not reflect actual union membership patterns. I plan to update the model using the real data set and include additional demographic variables to provide more accurate and meaningful analysis). The boxplots show that union membership percentages can also be relatively high among individuals without a college degree, indicating the presence of confounding factors.
+
+-   **Gender**: Male workers show higher union membership percentages compared to female workers. This gender gap is more prominent in the manufacturing and public sectors.
+
+-   **Industry**: Union membership is highest in the public sector and public administration industries, with median membership rates above 30%. Industries like wholesale/retail and private sector show much lower unionization rates, often below 10%.
+
+Overall, these results show that education, gender, and industry all play important roles in union membership. Expanding the logistic regression model to include these factors and using the actual data will help better understand how each one influences the likelihood of being a union member.
 
 ## EDA
+
+The EDA focuses on the dependent variable perc_mem (percentage of union members), exploring how it varies across key demographic groups. Visualizations include:
+
+-   Boxplots comparing union membership percentages by education level, gender, and industry - both bivariate and multivariate.
+
+-   A univariate histogram showing the overall distribution of union membership percentages.
+
+-   A logistic regression model exploring the probability of union membership based on education, with plans to extend the model to include other demographic variables.
+
 Pre-processing Data Explained:
+
 ```{r}
 library(tidyverse) #Load tidyverse package
 
@@ -175,8 +222,17 @@ industry_data <- tibble(rbind(private, public, manufacturing,
                               wholesale, public_admin))
 write_csv(industry_data, file = "industry_data.csv")
 
-```
 Load packages and read data
+#load packages and read data
+library(tidyverse)
+
+education_data <- read_csv(file="../Project 1/Data/education_data.csv")
+sex_data <- read_csv(file="../Project 1/Data/sex_data.csv")
+industry_data <- read_csv(file="../Project 1/Data/industry_data.csv")
+```
+
+Load packages and read data. Create Univariate, Bivariate, Multivariate, and Logistic Regression Plots
+
 ```{r}
 #load packages and read data
 library(tidyverse)
@@ -185,10 +241,7 @@ education_data <- read_csv(file="../Project 1/Data/education_data.csv")
 sex_data <- read_csv(file="../Project 1/Data/sex_data.csv")
 industry_data <- read_csv(file="../Project 1/Data/industry_data.csv")
 
-```
-Create Univariate, Bivariate, Multivariate, and Logistic Regression Plots
-```{r}
-
+### Univariate, Bivariate, Multivariate, and Logistic Regression Plots
 ### Model 1: Linear Regression with Education
 # Predicts union membership percentage based on education level
 mod1<-lm(perc_mem~education, data=education_data)
@@ -243,46 +296,37 @@ plot3 <- ggplot(industry_data, aes(x = industry, y = perc_mem, fill = industry))
 ggsave("table3_industry.png", plot = plot3, width = 7, height = 4, dpi = 300)
 print(plot3)
 
-# Table 4: Logistic Regres
-# Load required libraries
-library(tidyverse)
-library(Hmisc)
-library(ggplot2)
+### Table 4: Logistic Regression - Predicted Probability by Education
+set.seed(123)  # For reproducibility
+n <- 100  # Sample size for simulation
+education <- rbinom(n, 1, 0.5)  # Simulate education variable (0 = <College, 1 = College)
 
-# Load cleaned education data (adjust the path if needed)
-education_data <- read_csv("data/education_data.csv")
+# Generate probabilities using a logistic model
+prob_union <- 1 / (1 + exp(-( -1 + 2 * education )))  
 
-# Step 1: Prepare Data
-# Create a binary outcome variable for union membership: 1 if 'members' > 0, 0 otherwise
-education_data <- education_data %>%
-  mutate(union_member = if_else(members > 0, 1, 0))
+# Simulate union membership outcome based on probabilities
+union_member <- rbinom(n, 1, prob_union)
 
-# Step 2: Fit Logistic Regression Model Using Actual Data
-model_real <- glm(union_member ~ education, data = education_data, family = binomial)
+# Create data frame for modeling
+df2 <- data.frame(union_member, education)
 
-# View model summary
-summary(model_real)
+# Fit logistic regression model
+model2 <- glm(union_member ~ education, data = df2, family = binomial)
+df2$predicted_prob <- predict(model2, type = "response")  # Get predicted probabilities
 
-# Add predicted probabilities to the data
-education_data$predicted_prob <- predict(model_real, type = "response")
-
-# Step 3: Plot Predicted Probabilities
-plot_real <- ggplot(education_data, aes(x = education, y = predicted_prob)) +
-  stat_summary(fun = mean, geom = "point", size = 5, color = "blue") +
-  stat_summary(fun.data = mean_cl_boot, geom = "errorbar", width = 0.1, color = "darkblue") +
+# Plot predicted probabilities by education level
+plot5 <- ggplot(df2, aes(x = factor(education), y = predicted_prob)) +
+  stat_summary(fun = mean, geom = "point", size = 5, color = "blue") +  # Show mean probabilities
+  stat_summary(fun.data = mean_cl_boot, geom = "errorbar", width = 0.1, color = "darkblue") + # Add error bars
   labs(
-    x = "Education Level",
+    x = "Education (0 = <College, 1 = College)",
     y = "Predicted Probability of Union Membership",
-    title = "Logistic Regression: Predicted Probability by Education (Actual Data)"
+    title = "Logistic Regression: Probability by Education"
   ) +
   theme_minimal()
 
-# Save the plot
-ggsave("logistic_real_data_plot.png", plot = plot_real, width = 6, height = 4, dpi = 300)
-
-# Display the plot
-print(plot_real)
-
+ggsave("table5_logistic_education.png", plot = plot5, width = 6, height = 4, dpi = 300)
+print(plot5)
 
 ### Table 5: Multivariate Plot - Union Membership % by Industry and Sex
 set.seed(123)  # For reproducibility
