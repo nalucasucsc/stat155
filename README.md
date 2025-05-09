@@ -1,6 +1,6 @@
 # Welcome to my project repository for STAT155
 ---
-# 
+# Union Membership Trends by Demographics and Industry: 1973–2024
 ---
 # Description: 
 This project investigates how union membership rates differ across education levels, industries, gender, and employment sectors from 1973 to 2024. Using longitudinal data, the analysis explores demographic and labor market factors associated with union participation, providing insight into trends and disparities over time.
