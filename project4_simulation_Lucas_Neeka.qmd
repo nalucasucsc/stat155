@@ -1,0 +1,79 @@
+---
+title: "project4_simulation_Lucas_Neeka"
+format: pdf
+editor: visual
+---
+
+## **Proposal**
+
+------------------------------------------------------------------------
+
+### **1. Scientific or Statistical Question**
+
+-   How can different types of statistical distributions, used to produce simulated data, affect the results of linear and logistic regression models for predicting union membership?
+
+------------------------------------------------------------------------
+
+### **2. Data**
+
+-   The data will be generated through a simulation of the following distributions: gamma, beta, normal, binomial, poisson, exponential, chi-squared, t, F, and uniform.
+
+-   Mathematical Notations:
+
+    -   linear regression: y = B_0 + B_1\*x_1 + B_2\*x_2 + ... + e
+
+    -   logistic regression: ln (p/1-p) = B_0 + B_1\*x_1 + B_2\*x_2 + ... + B_K\*x_K
+
+-   The assumptions are that whichever statistical distribution simulates data that is closest to the actual data (this is measured by bias of B_1 and B_2, and MSE) has the best affect on results of linear and logistic regression models for predicting union membership. We can assume that all values are scaled and numeric, and that the sample size remains consistent throughout all simulations.
+
+------------------------------------------------------------------------
+
+### **3. Estimates**
+
+-   For each model, the bias of coefficients B_1 and B_2, and MSE will be estimated.
+
+------------------------------------------------------------------------
+
+### **4. Methods**
+
+-   For each distribution, there will be a simulated sample size of n = 100. I will be using linear and logistic regression models, and be evaluating estimates of B_1, B_2, and MSE.
+
+-   I hypothesize that distributions with outliers and skewness will produce less accurate estimates for bias of B_1, B_2, and MSE, and produce low performing linear and logistic models.
+
+------------------------------------------------------------------------
+
+### **5. Performance Criteria**
+
+-   Bias of B_1 and B_2: used to evaluate distance between the true values and the estimated coefficients.
+
+-   MSE of predicted union membership percentages for linear regression and predicted probabilities (0-1) for logistic regression.
+
+-   mean, standard deviation, Type 1 error rate 
+
+------------------------------------------------------------------------
+
+### **6. Simulation Plan**
+
+-   Detail how the experiment will be carried out:
+
+    -   Number of simulations per distribution: 100
+
+    -   Parameter settings:
+
+        -   union percent membership (%) = B_0 + 5 categories + e.
+
+            -   this formula is derived from the linear regression formula: y = B_0 + B_1\*x_1 + B_2\*x_2 + ... + e
+
+        -   5 categories = industry, education, sex, sector, year
+
+    -   What will be recorded: MSE, bias of B_1 and B_2
+
+    -   Any changes from Project III’s code: I will add a code to generate simulated data through 10 different distributions, create summary tables of findings from each distribution.
+
+------------------------------------------------------------------------
+
+### **7. Anticipated Challenges or Limitations**
+
+-   Some anticipated challenges or limitations may include: the actual sample of data being relatively small, and since there will be a total of 1,000 simulations (100 simulations per 10 distributions) the run time may be very long.
+
+------------------------------------------------------------------------
