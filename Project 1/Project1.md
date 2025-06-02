@@ -10,7 +10,7 @@ How has union membership changed across different industries and demographics fr
 The data was originally collected by the U.S. Census Bureau and Bureau of Labor Statistics (BLS) through the Current Population Survey (CPS). For high earning individuals, researchers used Pareto distribution estimates. Annually on Unionstats.com, linear regression models are used to demonstrate the wage gaps between union and nonunion workers. You can find the data at https://www.unionstats.com/ under "By Sector and Demographic Group: 1973-2024". To access "Private Sector Wage & Salary" data click the excel sheet corressponding to "All". To access "Public Sector Wage & Salary" data click the excel sheet corresponding to "All". To access "Less Than College" data, click the excel under Demographic Groups. To access "College or More" data, click the excel under Demographic Groups. To access "Female" data, click the excel under Demographic Groups. To access "Male" data, click the excel under Demographic Groups. To access "Public Administration" data, click the excel under All Wage & Salary. To access "Wholesale/Retail" data, click the excel under All Wage & Salary. To access "Manufacturing" data, click the excel under All Wage & Salary.
 
 ## The motivation for your research question (citing relevant literature): 
-My motivation for my research question is the recent terms of events and financial security for all. In “BlackRock CEO Larry Fink’s grim recession warning: Trump tariffs ‘beyond anything I could have imagined’”, Ariel Zilber explains Larry Fink’s warning that fears of a potential recession could lead to unemployment for many.
+In light of recent whistleblower allegations regarding the unauthorized extraction of sensitive labor data from the NLRB by DOGE, the importance for understanding the historical trajectory of union membership have never been higher.
 
 ## Describe the data set you wish to explore: 
 I wish to explore union membership across their highest education, industry, gender, and whether their profession is in a public or private sector.
@@ -45,4 +45,4 @@ Hirsch, B. T., Macpherson, D. A., & Even, W. E. (2025). Union Membership, Covera
 
 Macpherson, D. A., & Hirsch, B. T. (2023). Five decades of CPS wages, methods, and union‐nonunion wage gaps at unionstats.com. Industrial Relations: A Journal of Economy and Society, 62(4), 439–452. https://doi.org/10.1111/irel.12330 
 
-Summers, L. (2025, April 8). Larry Summers warns of economic carnage, millions of lost jobs as a result of Trump's tariffs. New York Post. https://nypost.com/2025/04/08/business/larry-summers-predicts-recession-2m-unemployed-due-to-tariffs/​
+McLaughlin, J. (2025, April 15). A whistleblower’s disclosure details how Doge may have taken sensitive labor data. NPR. https://www.npr.org/2025/04/15/nx-s1-5355896/doge-nlrb-elon-musk-spacex-security 
