@@ -77,3 +77,100 @@ editor: visual
 -   Some anticipated challenges or limitations may include: the actual sample of data being relatively small, and since there will be a total of 1,000 simulations (100 simulations per 10 distributions) the run time may be very long.
 
 ------------------------------------------------------------------------
+
+## 
+
+```{r}
+# Load required libraries
+library(tidyverse)
+library(broom)
+
+# Setup
+n <- 100
+num_sim <- 100
+true_b1 <- 1.5
+true_b2 <- -2.0
+
+# Define distributions
+distributions <- list(
+  gamma = function(n) rgamma(n, 2, 2),
+  beta = function(n) rbeta(n, 2, 5),
+  normal = function(n) rnorm(n),
+  binomial = function(n) rbinom(n, 1, 0.5),
+  poisson = function(n) rpois(n, 3),
+  exponential = function(n) rexp(n),
+  chi_squared = function(n) rchisq(n, 3),
+  t = function(n) rt(n, 5),
+  F = function(n) rf(n, 5, 2),
+  uniform = function(n) runif(n)
+)
+
+# Results storage
+results <- list()
+
+for (dist_name in names(distributions)) {
+  lin_b1 <- c(); lin_b2 <- c(); lin_mse <- c(); lin_type1 <- c()
+  log_b1 <- c(); log_b2 <- c(); log_mse <- c(); log_type1 <- c()
+  
+  for (i in 1:num_sim) {
+    dist_func <- distributions[[dist_name]]
+    
+    # Simulate predictors
+    x1 <- dist_func(n)
+    x2 <- dist_func(n)
+    x3 <- dist_func(n)  # noise
+    x4 <- dist_func(n)  # noise
+    x5 <- dist_func(n)  # noise
+    
+    X <- data.frame(x1, x2, x3, x4, x5)
+    
+    # Linear outcome
+    y_lin <- true_b1 * x1 + true_b2 * x2 + rnorm(n)
+    lin_mod <- lm(y_lin ~ ., data = X)
+    preds_lin <- predict(lin_mod)
+    
+    coefs_lin <- coef(lin_mod)
+    lin_b1 <- c(lin_b1, coefs_lin["x1"] - true_b1)
+    lin_b2 <- c(lin_b2, coefs_lin["x2"] - true_b2)
+    lin_mse <- c(lin_mse, mean((y_lin - preds_lin)^2))
+    
+    pvals_lin <- summary(lin_mod)$coefficients[-1, 4]
+    lin_type1 <- c(lin_type1, mean(pvals_lin[3:5] < 0.05))
+    
+    # Logistic outcome
+    logit <- true_b1 * x1 + true_b2 * x2
+    p <- plogis(logit)
+    y_log <- rbinom(n, 1, p)
+    
+    log_mod <- tryCatch(glm(y_log ~ ., data = X, family = binomial), error = function(e) NULL)
+    
+    if (!is.null(log_mod)) {
+      pred_prob <- predict(log_mod, type = "response")
+      coefs_log <- coef(log_mod)
+      
+      log_b1 <- c(log_b1, coefs_log["x1"] - true_b1)
+      log_b2 <- c(log_b2, coefs_log["x2"] - true_b2)
+      log_mse <- c(log_mse, mean((p - pred_prob)^2))
+      
+      pvals_log <- summary(log_mod)$coefficients[-1, 4]
+      log_type1 <- c(log_type1, mean(pvals_log[3:5] < 0.05))
+    }
+  }
+  
+  results[[dist_name]] <- tibble(
+    distribution = dist_name,
+    lin_bias_b1 = mean(lin_b1),
+    lin_bias_b2 = mean(lin_b2),
+    lin_mse = mean(lin_mse),
+    lin_type1_error = mean(lin_type1),
+    log_bias_b1 = mean(log_b1),
+    log_bias_b2 = mean(log_b2),
+    log_mse = mean(log_mse),
+    log_type1_error = mean(log_type1)
+  )
+}
+
+# Combine and display results
+summary_results <- bind_rows(results)
+summary_results
+```
