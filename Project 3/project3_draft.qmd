@@ -107,7 +107,7 @@ The EDA focuses on the dependent variable perc_mem (percentage of union members)
 Pre-processing Data Explained:
 
 ```{r}
-Load packages and read data
+
 #load packages and read data
 library(tidyverse)
 
@@ -242,4 +242,41 @@ plot_uni <- ggplot(industry_data, aes(x = perc_mem)) +
 
 print(plot_uni)
 ggsave("table5_univariate_histogram.png", plot = plot_uni, width = 6, height = 4, dpi = 300)
+
+# Table 6: Logistic Regres
+# Load required libraries
+library(tidyverse)
+library(Hmisc)
+library(ggplot2)
+
+# Step 1: Prepare Data
+# Create a binary outcome variable for union membership: 1 if 'members' > 0, 0 otherwise
+education_data <- education_data %>%
+  mutate(union_member = if_else(members > 0, 1, 0))
+
+# Step 2: Fit Logistic Regression Model Using Actual Data
+model_real <- glm(union_member ~ education, data = education_data, family = binomial)
+
+# View model summary
+summary(model_real)
+
+# Add predicted probabilities to the data
+education_data$predicted_prob <- predict(model_real, type = "response")
+
+# Step 3: Plot Predicted Probabilities
+plot_real <- ggplot(education_data, aes(x = education, y = predicted_prob)) +
+  stat_summary(fun = mean, geom = "point", size = 5, color = "blue") +
+  stat_summary(fun.data = mean_cl_boot, geom = "errorbar", width = 0.1, color = "darkblue") +
+  labs(
+    x = "Education Level",
+    y = "Predicted Probability of Union Membership",
+    title = "Logistic Regression: Predicted Probability by Education (Actual Data)"
+  ) +
+  theme_minimal()
+
+# Save the plot
+ggsave("logistic_real_data_plot.png", plot = plot_real, width = 6, height = 4, dpi = 300)
+
+# Display the plot
+print(plot_real)
 ```
