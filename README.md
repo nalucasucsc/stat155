@@ -20,6 +20,12 @@ The final product will include reproducible data analysis and a written summary 
 
 # Step-by-Step to Reproduce:
 ---
+1. Download the repository
+2. Open Project 1 -> ProcessingData.R to run preprocessing and cleaning data code.
+3. Secondly, open Project 2 -> eda.qmd to run exploratory data analysis code.
+4. Then, open Project 3 -> project3_draft.qmd to run logistic and linear regression modeling code.
+5. Next, open Project 4 -> project4_simulation_Lucas_Neeka.qmd to run Monte Carlo Simulation
+6. Lastly, open main stat155 -> written_report.pdf and Neeka Lucas - Final Project Presentation.pdf to read an overview of the entire project.
 
 # Package List: 
 ---
