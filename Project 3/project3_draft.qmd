@@ -119,6 +119,7 @@ industry_data <- read_csv(file="../Project 1/Data/industry_data.csv")
 Load packages and read data. Create Univariate, Bivariate, Multivariate, and Logistic Regression Plots
 
 ```{r}
+{r}
 #load packages and read data
 library(tidyverse)
 
@@ -243,40 +244,226 @@ plot_uni <- ggplot(industry_data, aes(x = perc_mem)) +
 print(plot_uni)
 ggsave("table5_univariate_histogram.png", plot = plot_uni, width = 6, height = 4, dpi = 300)
 
-# Table 6: Logistic Regres
+# Logistic Regression - Education
+# Load libraries
+library(tidyverse)
+library(Hmisc)
+library(ggplot2)
+
+# Step 1: Create clean integer counts based on perc_mem
+education_data_clean <- education_data %>%
+  mutate(
+    members_count = round((perc_mem / 100) * sample_size),
+    non_members = sample_size - members_count
+  ) %>%
+  filter(
+    !is.na(members_count),
+    !is.na(non_members),
+    members_count >= 0,
+    non_members >= 0
+  )
+
+# Step 2: Fit binomial logistic regression model
+model_agg <- glm(
+  cbind(members_count, non_members) ~ education,
+  data = education_data_clean,
+  family = binomial
+)
+
+# Step 3: View model output
+summary(model_agg)
+
+# Step 4: Add predicted probabilities
+education_data_clean$predicted_prob <- predict(model_agg, type = "response")
+
+# Step 5: Plot predicted probabilities
+ggplot(education_data_clean, aes(x = education, y = predicted_prob)) +
+  stat_summary(fun = mean, geom = "point", size = 4, color = "blue") +
+  stat_summary(fun.data = mean_cl_boot, geom = "errorbar", width = 0.1, color = "darkblue") +
+  labs(
+    title = "Predicted Probability of Union Membership by Education",
+    x = "Education Level",
+    y = "Predicted Probability"
+  ) +
+  theme_minimal()
+
+#Logistic Regression - Sex
 # Load required libraries
 library(tidyverse)
 library(Hmisc)
 library(ggplot2)
 
-# Step 1: Prepare Data
-# Create a binary outcome variable for union membership: 1 if 'members' > 0, 0 otherwise
-education_data <- education_data %>%
-  mutate(union_member = if_else(members > 0, 1, 0))
+# Step 1: Calculate member and non-member counts from perc_mem
+sex_data_clean <- sex_data %>%
+  mutate(
+    members_count = round((perc_mem / 100) * sample_size),
+    non_members = sample_size - members_count
+  ) %>%
+  filter(
+    !is.na(members_count),
+    !is.na(non_members),
+    members_count >= 0,
+    non_members >= 0
+  )
 
-# Step 2: Fit Logistic Regression Model Using Actual Data
-model_real <- glm(union_member ~ education, data = education_data, family = binomial)
+# Step 2: Fit logistic regression model
+model_sex <- glm(
+  cbind(members_count, non_members) ~ sex,
+  data = sex_data_clean,
+  family = binomial
+)
 
-# View model summary
-summary(model_real)
+# Step 3: View model output
+summary(model_sex)
 
-# Add predicted probabilities to the data
-education_data$predicted_prob <- predict(model_real, type = "response")
+# Step 4: Add predicted probabilities to the data
+sex_data_clean$predicted_prob <- predict(model_sex, type = "response")
 
-# Step 3: Plot Predicted Probabilities
-plot_real <- ggplot(education_data, aes(x = education, y = predicted_prob)) +
-  stat_summary(fun = mean, geom = "point", size = 5, color = "blue") +
+# Step 5: Plot predicted probabilities by sex
+ggplot(sex_data_clean, aes(x = sex, y = predicted_prob)) +
+  stat_summary(fun = mean, geom = "point", size = 4, color = "blue") +
   stat_summary(fun.data = mean_cl_boot, geom = "errorbar", width = 0.1, color = "darkblue") +
   labs(
-    x = "Education Level",
-    y = "Predicted Probability of Union Membership",
-    title = "Logistic Regression: Predicted Probability by Education (Actual Data)"
+    title = "Predicted Probability of Union Membership by Sex",
+    x = "Sex",
+    y = "Predicted Probability"
   ) +
   theme_minimal()
 
-# Save the plot
-ggsave("logistic_real_data_plot.png", plot = plot_real, width = 6, height = 4, dpi = 300)
+#Logistic Regression - Industry
+# Load required libraries
+library(tidyverse)
+library(Hmisc)
+library(ggplot2)
 
-# Display the plot
-print(plot_real)
+# Step 1: Calculate member and non-member counts from perc_mem
+industry_data_clean <- industry_data %>%
+  mutate(
+    members_count = round((perc_mem / 100) * sample_size),
+    non_members = sample_size - members_count
+  ) %>%
+  filter(
+    !is.na(members_count),
+    !is.na(non_members),
+    members_count >= 0,
+    non_members >= 0
+  )
+
+# Step 2: Fit logistic regression model
+model_industry <- glm(
+  cbind(members_count, non_members) ~ industry,
+  data = industry_data_clean,
+  family = binomial
+)
+
+# Step 3: View model output
+summary(model_industry)
+
+# Step 4: Add predicted probabilities to the data
+industry_data_clean$predicted_prob <- predict(model_industry, type = "response")
+
+# Step 5: Plot predicted probabilities by industry
+ggplot(industry_data_clean, aes(x = industry, y = predicted_prob)) +
+  stat_summary(fun = mean, geom = "point", size = 4, color = "blue") +
+  stat_summary(fun.data = mean_cl_boot, geom = "errorbar", width = 0.1, color = "darkblue") +
+  labs(
+    title = "Predicted Probability of Union Membership by Industry",
+    x = "Industry",
+    y = "Predicted Probability"
+  ) +
+  theme_minimal()
+
+#Linear Regression - Education
+# Load required libraries
+library(tidyverse)
+library(ggplot2)
+
+# Step 1: Clean the data if needed (filter missing values)
+education_data_clean <- education_data %>%
+  filter(
+    !is.na(perc_mem),
+    !is.na(education)
+  )
+
+# Step 2: Fit linear regression model
+model_linear_edu <- lm(perc_mem ~ education, data = education_data_clean)
+
+# Step 3: View model summary
+summary(model_linear_edu)
+
+# Step 4: Add predicted values to the data
+education_data_clean$predicted_perc_mem <- predict(model_linear_edu)
+
+# Step 5: Plot actual vs. predicted union membership by education
+ggplot(education_data_clean, aes(x = education, y = perc_mem)) +
+  stat_summary(fun = mean, geom = "point", size = 4, color = "black") +
+  stat_summary(aes(y = predicted_perc_mem), fun = mean, geom = "point", size = 4, color = "blue") +
+  stat_summary(aes(y = predicted_perc_mem), fun = mean, geom = "line", group = 1, color = "blue") +
+  labs(
+    title = "Actual and Predicted Union Membership % by Education",
+    x = "Education Level",
+    y = "Union Membership (%)"
+  ) +
+  theme_minimal()
+#Linear Regression - Sex
+# Load required libraries
+library(tidyverse)
+library(ggplot2)
+
+# Step 1: Clean the data
+sex_data_clean <- sex_data %>%
+  filter(
+    !is.na(perc_mem),
+    !is.na(sex)
+  )
+
+# Step 2: Fit linear regression model
+model_linear_sex <- lm(perc_mem ~ sex, data = sex_data_clean)
+
+# Step 3: View model summary
+summary(model_linear_sex)
+
+# Step 4: Add predicted values
+sex_data_clean$predicted_perc_mem <- predict(model_linear_sex)
+
+# Step 5: Plot actual and predicted union membership by sex
+ggplot(sex_data_clean, aes(x = sex, y = perc_mem)) +
+  stat_summary(fun = mean, geom = "point", size = 4, color = "black") +
+  stat_summary(aes(y = predicted_perc_mem), fun = mean, geom = "point", size = 4, color = "blue") +
+  stat_summary(aes(y = predicted_perc_mem), fun = mean, geom = "line", group = 1, color = "blue") +
+  labs(
+    title = "Actual and Predicted Union Membership % by Sex",
+    x = "Sex",
+    y = "Union Membership (%)"
+  ) +
+  theme_minimal()
+
+#Linear Regression - Industry
+# Step 1: Clean the data
+industry_data_clean <- industry_data %>%
+  filter(
+    !is.na(perc_mem),
+    !is.na(industry)
+  )
+
+# Step 2: Fit linear regression model
+model_linear_industry <- lm(perc_mem ~ industry, data = industry_data_clean)
+
+# Step 3: View model summary
+summary(model_linear_industry)
+
+# Step 4: Add predicted values
+industry_data_clean$predicted_perc_mem <- predict(model_linear_industry)
+
+# Step 5: Plot actual and predicted union membership by industry
+ggplot(industry_data_clean, aes(x = industry, y = perc_mem)) +
+  stat_summary(fun = mean, geom = "point", size = 4, color = "black") +
+  stat_summary(aes(y = predicted_perc_mem), fun = mean, geom = "point", size = 4, color = "blue") +
+  stat_summary(aes(y = predicted_perc_mem), fun = mean, geom = "line", group = 1, color = "blue") +
+  labs(
+    title = "Actual and Predicted Union Membership % by Industry",
+    x = "Industry",
+    y = "Union Membership (%)"
+  ) +
+  theme_minimal()
 ```
