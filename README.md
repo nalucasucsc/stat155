@@ -2,6 +2,8 @@
 ---
 # Union Membership Trends by Demographics and Industry: 1973–2024
 ---
+# Research Question: How has union membership differed between gender, sector, industry, and education from 1973 to 2024?
+---
 # Description: 
 This project investigates how union membership rates differ across education levels, industries, gender, and employment sectors from 1973 to 2024. Using longitudinal data, the analysis explores demographic and labor market factors associated with union participation, providing insight into trends and disparities over time.
 
@@ -15,4 +17,9 @@ The final product will include reproducible data analysis and a written summary 
 * [Project 2](https://github.com/nalucasucsc/stat155/tree/main/Project%202) is an Exploratory data analysis of the data
 * [Project 3](https://github.com/nalucasucsc/stat155/tree/main/Project%203) is the actual linear regression analysis, using one linear regression technique
 * [Project 4](https://github.com/nalucasucsc/stat155/tree/main/Project%204) is a simulation study to compare 2 or more linear regression techniques
-* Final_Docs a folder containing all the work to produce the final presentation and the final report
+
+# Step-by-Step to Reproduce:
+---
+
+# Package List: 
+---
