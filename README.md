@@ -23,3 +23,4 @@ The final product will include reproducible data analysis and a written summary 
 
 # Package List: 
 ---
+tidyverse, ggplot2, dplyr, Hmisc
